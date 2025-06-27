@@ -1,0 +1,2 @@
+# Define todos os arquivos de texto para usarem finais de linha LF (padrão Linux/macOS)
+* text=auto eol=lf
