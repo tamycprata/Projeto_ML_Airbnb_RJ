@@ -1,3 +1,4 @@
 # Define todos os arquivos de texto para usarem finais de linha LF (padrão Linux/macOS)
 * text=auto eol=lf
 dataset/*.csv filter=lfs diff=lfs merge=lfs -text
+*.csv filter=lfs diff=lfs merge=lfs -text
