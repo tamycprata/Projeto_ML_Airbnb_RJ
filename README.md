@@ -1,95 +1,104 @@
-Previsão de Preços de Aluguéis do Airbnb no Rio de Janeiro
+# 🏠 Previsão de Preço de Aluguel no Airbnb - Rio de Janeiro
 
-Descrição do Projeto
-Este projeto tem como objetivo construir um modelo de Machine Learning para prever o preço de diárias de imóveis anunciados na plataforma Airbnb, especificamente na cidade do Rio de Janeiro. A ideia é que a ferramenta possa auxiliar tanto os anfitriões (hosts) a precificarem seus imóveis de forma mais competitiva, quanto os viajantes a identificarem se um anúncio possui um valor justo em comparação a outros com características semelhantes.
+Este projeto utiliza **Machine Learning** para prever o valor de aluguel de um imóvel no Airbnb com base em características do anúncio. O modelo foi treinado em dados reais da cidade do **Rio de Janeiro** e disponibilizado via uma interface interativa criada com **Streamlit**.
 
-O desenvolvimento do projeto envolveu diversas etapas, desde a coleta e tratamento dos dados até a construção e avaliação de diferentes modelos de regressão, buscando identificar os fatores que mais impactam no valor final da diária.
+---
 
-Fonte dos Dados
-Os dados utilizados neste projeto foram extraídos da plataforma Kaggle e podem ser encontrados no seguinte link: Airbnb Rio de Janeiro Dataset.
+## 🚀 Funcionalidades
 
-As bases de dados contemplam o período de abril de 2018 a maio de 2020, com exceção do mês de junho de 2018, que não possuía dados disponíveis. É importante notar que os dados podem ser atualizados na plataforma, o que pode levar a resultados diferentes dos apresentados neste projeto.
+- Interface web para entrada dos dados do imóvel
+- Previsão do preço de aluguel com base em atributos fornecidos
+- Modelo treinado com `XGBoost` otimizado via `scikit-learn`
+- Organização das variáveis em: numéricas, booleanas e categóricas
+- Experiência interativa e simples para o usuário
 
-Metodologia
-O processo de desenvolvimento do modelo seguiu as seguintes etapas:
+---
 
-1. Coleta e Consolidação dos Dados
-Os dados, que estavam divididos em arquivos CSV mensais, foram lidos e consolidados em um único DataFrame do Pandas. Foram adicionadas colunas de "ano" e "mês" para facilitar a análise de sazonalidade.
+## 🧠 Tecnologias utilizadas
 
-2. Limpeza e Pré-processamento de Dados
-Remoção de Colunas Irrelevantes: Foram excluídas colunas que não agregam valor ao modelo, como IDs, URLs e campos de texto livre (descrições, resumos, etc.).
+- `Python`
+- `Streamlit`
+- `scikit-learn`
+- `XGBoost`
+- `joblib`
+- `pandas`
 
-Tratamento de Valores Ausentes:
+---
 
-Colunas com um volume muito alto de valores nulos (acima de 200.000) foram descartadas.
+## 🛠 Como executar o projeto
 
-Linhas que continham valores faltantes em colunas consideradas importantes foram removidas.
+### 1. Clone o repositório
 
-Conversão de Tipos de Dados: Colunas que representavam valores monetários, como price e extra_people, foram convertidas de texto (objeto) para o formato numérico (float), após a remoção de caracteres como "$" e ",". Outras colunas numéricas também tiveram seus tipos de dados otimizados para reduzir o uso de memória.
-
-3. Análise Exploratória e Tratamento de Outliers
-Foi realizada uma análise de correlação entre as variáveis numéricas para identificar possíveis redundâncias, mas nenhuma correlação forte o suficiente para justificar a exclusão de features foi encontrada.
-
-Foram identificados e removidos outliers em diversas colunas, como price, extra_people, host_listings_count, accommodates, bathrooms, bedrooms e beds. A regra utilizada para a remoção foi a do intervalo interquartil (IQR), excluindo valores abaixo de Q1 - 1.5 * Amplitude e acima de Q3 + 1.5 * Amplitude.
-
-4. Engenharia de Features
-Variáveis Categóricas: Colunas de texto como property_type, room_type, bed_type e cancellation_policy foram transformadas em variáveis numéricas através do método de one-hot encoding (get_dummies do Pandas).
-
-Comodidades (amenities): A coluna amenities, que continha uma lista de comodidades em formato de texto, foi transformada em uma coluna numérica que representa a quantidade total de comodidades de cada anúncio.
-
-5. Modelagem e Avaliação
-Os dados foram divididos em conjuntos de treino e teste.
-
-Diferentes modelos de regressão foram treinados e avaliados, incluindo:
-
-Regressão Linear
-
-Random Forest Regressor
-
-Extra Trees Regressor
-
-Gradient Boosting Regressor
-
-XGBoost Regressor
-
-LightGBM Regressor
-
-A avaliação dos modelos foi realizada utilizando as métricas R² (Coeficiente de Determinação) e RMSE (Raiz do Erro Quadrático Médio). O modelo com o melhor desempenho em ambas as métricas foi selecionado como o modelo final.
-
-Tecnologias Utilizadas
-Pandas: Para manipulação e análise dos dados.
-
-NumPy: Para operações numéricas.
-
-Seaborn e Matplotlib: Para visualização de dados.
-
-Plotly Express: Para criação de gráficos interativos.
-
-Scikit-learn: Para a construção dos modelos de Machine Learning (LinearRegression, RandomForestRegressor, ExtraTreesRegressor, RandomizedSearchCV, GradientBoostingRegressor).
-
-XGBoost e LightGBM: Para a implementação de modelos de Gradient Boosting de alta performance.
-
-Joblib: Para salvar o modelo treinado.
-
-Como Executar o Projeto
-Clone o repositório:
-
-Bash
-
-git clone https://github.com/seu-usuario/seu-repositorio.git
-Instale as dependências:
-(É recomendado criar um ambiente virtual)
-
-Bash
-
+```bash
+git clone https://github.com/seuusuario/projeto-airbnb-rj.git
+cd projeto-airbnb-rj
+2. Instale as dependências
+bash
+Copiar
+Editar
 pip install -r requirements.txt
-Caso não haja um arquivo requirements.txt, instale as bibliotecas listadas na seção "Tecnologias Utilizadas".
+Se o arquivo requirements.txt não existir, instale manualmente:
 
-Execute o Notebook:
-Abra o Jupyter Notebook e execute o arquivo ML_Airbnb_Rio.ipynb.
+bash
+Copiar
+Editar
+pip install streamlit xgboost scikit-learn pandas joblib
+3. Execute o app com Streamlit
+bash
+Copiar
+Editar
+streamlit run Deploy_Airbnb.py
+📥 Entradas do sistema
+O app solicita as seguintes informações:
 
-Resultados
-O projeto resultou em um modelo de previsão de preços com bom desempenho, capaz de auxiliar na precificação de imóveis no Airbnb. A análise das features mais importantes para o modelo revelou que características como a localização, o número de quartos e banheiros, e a quantidade de comodidades oferecidas são fatores determinantes no preço da diária.
+🔢 Variáveis Numéricas:
+Latitude, Longitude
 
-Como Contribuir
-Contribuições para o aprimoramento deste projeto são bem-vindas. Sinta-se à vontade para abrir issues ou enviar pull requests com melhorias e novas funcionalidades.
+Quantidade de hóspedes (accommodates)
+
+Banheiros, Quartos, Camas
+
+Valor por hóspede adicional (extra_people)
+
+Número mínimo de noites (minimum_nights)
+
+Ano e Mês do anúncio
+
+Número de comodidades (n_amenities)
+
+Quantidade de anúncios do host (host_listings_count)
+
+🔘 Variáveis Booleanas:
+Host é superhost?
+
+Reserva instantânea disponível?
+
+🔘 Variáveis Categóricas:
+Tipo de propriedade (property_type)
+
+Tipo de quarto (room_type)
+
+Política de cancelamento (cancelation_policy)
+
+📦 Saída
+Após preencher o formulário e clicar em "Prever valor do Aluguel", o sistema exibe o preço estimado para o imóvel.
+
+📁 Organização
+Deploy_Airbnb.py: Código principal do app Streamlit
+
+modelo_xgboost_otimizado.pkl ou .joblib: Arquivo do modelo treinado
+
+ML_Airbnb_Rio.ipynb: Jupyter Notebook com análise exploratória e treinamento
+
+📌 Observações
+O modelo atual foi treinado com foco em imóveis localizados no Rio de Janeiro.
+
+Pode ser adaptado para outras cidades ou plataformas com ajustes mínimos nos dados e variáveis.
+
+👩‍💻 Autor
+Tamy Prata
+🔗 LinkedIn https://www.linkedin.com/in/tamy-cristine/
+📧 tamycristine@yahoo.com.br
+
+📜 Licença
+Este projeto está licenciado sob a licença MIT.
