@@ -9,7 +9,7 @@ Este projeto utiliza **Machine Learning** para prever o valor de aluguel de um i
 - Interface web para entrada dos dados do imóvel
 - Previsão do preço de aluguel com base em atributos fornecidos
 - Modelo treinado com `XGBoost` otimizado via `scikit-learn`
-- Organização das variáveis em: numéricas, booleanas e categóricas
+
 - Experiência interativa e simples para o usuário
 
 ---
