@@ -1,4 +1,8 @@
-# Define todos os arquivos de texto para usarem finais de linha LF (padrão Linux/macOS)
+# Usa LF como final de linha para todos os arquivos de texto (padrão Unix)
 * text=auto eol=lf
-dataset/*.csv filter=lfs diff=lfs merge=lfs -text
+
+# Aplica Git LFS para arquivos CSV
 *.csv filter=lfs diff=lfs merge=lfs -text
+
+# (Opcional) Aplica LFS apenas para arquivos CSV dentro da pasta dataset
+# dataset/*.csv filter=lfs diff=lfs merge=lfs -text
