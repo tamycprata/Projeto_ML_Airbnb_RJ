@@ -19,7 +19,7 @@ extra_people = st.number_input('Pessoa Extra (R$)', step=0.01, value=0.0, format
 minimum_nights = st.number_input('Número mínimo de noites', step=1, value=1)
 ano = st.number_input('Ano', step=1, value=2018)
 mes = st.number_input('Mês', step=1, min_value=1, max_value=12, value=1)
-n_amenities = st.number_input('Número de comodidades', step=1, value=10)
+n_amenities = st.number_input('Número de comodidades (Ex. Wi-fi, ar condicionado, cafeteira, etc)', step=1, value=10)
 host_listings_count = st.number_input('O Host possui quantos imoveis anunciados?', step=1, value=1)
 
 # Entradas booleanas
